@@ -13,17 +13,15 @@
   --black: #141414;
   --white: #ffffff;
   --muted: #bfc3d9;
-  --highlight: #8e9af0; /* periwinkle for all buttons */
+  --highlight: #8e9af0; 
   --about-dark: #2b2b2b;
 }
 * {box-sizing:border-box;}
-html {scroll-behavior:smooth;} /* smooth scroll */
+html {scroll-behavior:smooth;}
 body {margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--black); color:var(--white);}
 img {max-width:100%; display:block;}
 a {color:inherit; text-decoration:none;}
 .container {width:100%; max-width:1200px; margin:0 auto; padding:0 20px;}
-
-/* Buttons */
 .btn {
   display:inline-flex; align-items:center; gap:.6rem;
   padding:.9rem 1.2rem; border-radius:14px; font-weight:700;
@@ -32,47 +30,31 @@ a {color:inherit; text-decoration:none;}
 }
 .btn:hover {transform:translateY(-2px); background:#7d8fe0; box-shadow:0 4px 12px rgba(0,0,0,0.2);}
 .btn:active {transform:scale(0.95);}
-
-/* Navigation */
 .nav {position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px); background:rgba(20,20,20,.9); border-bottom:1px solid rgba(255,255,255,.1);}
 .nav-inner {display:flex; align-items:center; justify-content:space-between; height:72px;}
 .brand {font-weight:800; letter-spacing:.2px;}
 .menu {display:flex; gap:28px;}
 .menu a {padding:10px 12px; border-radius:10px; position:relative;}
 .menu a:hover {color:var(--highlight);}
-
-/* Hero */
 .hero {display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:96px 0;}
 .hero h1 {font-size:3rem; margin:0 0 14px;}
 .hero p {color:var(--muted); max-width:48ch;}
-
-/* Cards */
 .showcase {display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
 .card {border-radius:18px; overflow:hidden; background:linear-gradient(180deg, rgba(142,154,240,.06), rgba(255,255,255,0)); border:1px solid rgba(142,154,240,.22); transform: translateY(20px); opacity:0; animation:fadeInUp 0.6s forwards;}
 .card .thumb {aspect-ratio:16/10; background:linear-gradient(135deg, rgba(183,13,13,.2), rgba(142,154,240,.05)); display:flex; align-items:center; justify-content:center;}
 .card .body {padding:16px;}
 .card h4 {margin:0 0 6px;}
-
-/* Sections */
 .section {padding:84px 0;}
 .section.light {background:#fff; color:var(--black);}
 .section.dark {background:var(--black);}
 #about {background:var(--about-dark);}
 .section-title {font-size:2.4rem; margin-bottom:18px; font-weight:800;}
 .section-sub {color:var(--muted); font-size:1rem; margin-top:6px;}
-
-/* Footer */
 .footer {border-top:1px solid rgba(142,154,240,.22); padding:28px 0; color:var(--muted); text-align:center;}
-
-/* Telegram tab */
 #telegramTab {transition: all 0.3s ease; opacity:0; max-height:0; overflow:hidden;}
 #telegramTab.show {opacity:1; max-height:500px;}
-
-/* Media Queries */
 @media(max-width:1000px){.hero{grid-template-columns:1fr}.showcase{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:640px){.menu{display:none}.showcase{grid-template-columns:1fr}.hero h1{font-size:2rem}}
-
-/* Animations */
 @keyframes fadeInUp {to {transform: translateY(0); opacity:1;}}
 </style>
 </head>
@@ -157,15 +139,9 @@ a {color:inherit; text-decoration:none;}
     <h2 class="section-title">Contact & Support</h2>
     <p class="section-sub">Book a reading, or support my tarot work via PayPal(preferably to send as friends) or Ko-fi.</p>
     <div style="margin-top:24px; display:flex; gap:16px; flex-wrap:wrap;">
-      <button class="btn scroll-btn" onclick="window.location.href='https://www.reddit.com/u/AmaliaDraws/s/I5pmYqPqrd'">
-  Reddit
-      </button>
-      <button class="btn scroll-btn" onclick="window.location.href='https://paypal.me/aidenmayes9'">
-  Donate via PayPal
-      </button>
-<button class="btn scroll-btn" onclick="window.location.href='https://ko-fi.com/heyaiden'">
-  Support on Ko-fi
-</button>
+      <button class="btn" onclick="window.open('https://www.reddit.com/u/AmaliaDraws/s/I5pmYqPqrd', '_blank')">Reddit</button>
+      <button class="btn" onclick="window.open('https://paypal.me/aidenmayes9', '_blank')">Donate via PayPal</button>
+      <button class="btn" onclick="window.open('https://ko-fi.com/heyaiden', '_blank')">Support on Ko-fi</button>
       <button id="telegramBtn" class="btn">Contact via Telegram</button>
     </div>
     <div id="telegramTab">
@@ -186,7 +162,6 @@ telegramBtn.addEventListener('click', () => {
   telegramTab.classList.toggle('show');
 });
 
-// Animate cards on scroll
 const cards = document.querySelectorAll('.card');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -202,7 +177,6 @@ cards.forEach((card,i) => {
   observer.observe(card);
 });
 
-// Smooth slide animation for all scroll buttons
 document.querySelectorAll('.scroll-btn').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
@@ -210,7 +184,7 @@ document.querySelectorAll('.scroll-btn').forEach(btn => {
     if(targetSelector){
       const target = document.querySelector(targetSelector);
       if(target){
-        const top = target.offsetTop - 60; // offset for sticky nav
+        const top = target.offsetTop - 60;
         window.scrollTo({top, behavior:'smooth'});
       }
     }
